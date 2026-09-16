@@ -15,6 +15,8 @@ Build machine learning models using natural language.
 [Installation](#3-installation) |
 [Documentation](#4-documentation)
 
+*English · [Русский](README.ru.md)*
+
 <br>
 
 **plexe** lets you create machine learning models by describing them in plain language. Simply explain what you want,

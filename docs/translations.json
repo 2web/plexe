@@ -1,0 +1,39 @@
+{
+  "translations": [
+    {
+      "source": "README.md",
+      "translation": "README.ru.md",
+      "source_commit": ""
+    },
+    {
+      "source": "AGENTS.md",
+      "translation": "AGENTS.ru.md",
+      "source_commit": ""
+    },
+    {
+      "source": "CONTRIBUTING.md",
+      "translation": "CONTRIBUTING.ru.md",
+      "source_commit": ""
+    },
+    {
+      "source": "CODE_OF_CONDUCT.md",
+      "translation": "CODE_OF_CONDUCT.ru.md",
+      "source_commit": ""
+    },
+    {
+      "source": "SECURITY.md",
+      "translation": "SECURITY.ru.md",
+      "source_commit": ""
+    },
+    {
+      "source": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "translation": ".github/ISSUE_TEMPLATE/bug_report.ru.md",
+      "source_commit": ""
+    },
+    {
+      "source": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "translation": ".github/ISSUE_TEMPLATE/feature_request.ru.md",
+      "source_commit": ""
+    }
+  ]
+}

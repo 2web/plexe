@@ -1,5 +1,7 @@
 # Contributing to plexe
 
+*English · [Русский](CONTRIBUTING.ru.md)*
+
 Thank you for considering contributing to plexe! Your contributions help improve this project for everyone.
 
 ## Table of Contents

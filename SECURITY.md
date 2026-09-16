@@ -1,5 +1,7 @@
 # Security Policy
 
+*English · [Русский](SECURITY.ru.md)*
+
 The Plexe AI team and community take security vulnerabilities seriously. We appreciate your efforts to responsibly disclose any issues you discover, and we will make every effort to acknowledge your contributions.
 
 ## Reporting a Vulnerability

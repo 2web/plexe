@@ -1,5 +1,7 @@
 # AGENTS.md
 
+*English · [Русский](AGENTS.ru.md)*
+
 This file provides guidance to coding agents when working with code in this repository (for example, OpenAI Codex and Claude Code).
 
 `AGENTS.md` is the canonical version of this document. `CLAUDE.md` is kept as a compatibility symlink that points here, so if you opened this file via `CLAUDE.md`, you are in the right place.
