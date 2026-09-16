@@ -126,8 +126,9 @@ python3 scripts/check_translations.py --update   # record the current commits as
 ```
 
 If you change an English document, either update its `*.ru.md` counterpart in the same pull request
-and re-run `--update`, or leave it: a weekly automated job detects the drift and opens a pull
-request with the translation brought up to date.
+and re-run `--update`, or leave it: the `Translation Sync` workflow runs every Monday, and opens an
+issue listing the diff that still needs translating. The issue is reused while drift persists and
+closed once everything is back in sync.
 
 ## Style Guides
 
