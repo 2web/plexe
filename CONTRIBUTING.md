@@ -117,8 +117,8 @@ Documentation is maintained in English and mirrored into Russian as `*.ru.md` fi
 original (`README.ru.md`, `CONTRIBUTING.ru.md`, and so on). English is canonical: when the two
 disagree, the English file wins.
 
-Every pair is registered in [`docs/translations.json`](docs/translations.json) together with the
-commit that last touched the English source when the translation was written:
+Every pair is registered in [`docs/translations.json`](docs/translations.json) together with a hash
+of the English source as it stood when the translation was written:
 
 ```bash
 python3 scripts/check_translations.py            # report translations whose source has moved on
