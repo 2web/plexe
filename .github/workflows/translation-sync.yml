@@ -1,15 +1,13 @@
 name: Translation Sync
 
 # Weekly check that the *.ru.md translations still match their English sources.
-# Drift is reported in a single issue that is reused and closed automatically.
+# Drift is reported in the job summary and fails the run, since this repository
+# has issues disabled.
 
 on:
   workflow_dispatch: {}
   schedule:
     - cron: '0 9 * * 1'
-
-env:
-  ISSUE_TITLE: 'docs: Russian translations are out of sync'
 
 jobs:
   check-translations:
@@ -17,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      issues: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,42 +27,10 @@ jobs:
           python-version: '3.12'
 
       - name: Check translations
-        id: check
         run: |
-          if python3 scripts/check_translations.py --markdown > body.md; then
-            echo "stale=false" >> "$GITHUB_OUTPUT"
+          if python3 scripts/check_translations.py --markdown >> "$GITHUB_STEP_SUMMARY"; then
             echo "✅ All translations are up to date"
           else
-            echo "stale=true" >> "$GITHUB_OUTPUT"
-            echo "⚠️ Translation drift detected"
+            echo "::error::Russian translations are out of sync; see the job summary for the diffs"
+            exit 1
           fi
-          cat body.md
-
-      - name: Find the existing drift issue
-        id: issue
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          NUMBER=$(gh issue list --state open --search "$ISSUE_TITLE in:title" \
-            --limit 1 --json number --jq '.[0].number // empty')
-          echo "number=$NUMBER" >> "$GITHUB_OUTPUT"
-
-      - name: Report drift
-        if: steps.check.outputs.stale == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUMBER: ${{ steps.issue.outputs.number }}
-        run: |
-          if [ -n "$NUMBER" ]; then
-            gh issue edit "$NUMBER" --body-file body.md
-            echo "Updated issue #$NUMBER"
-          else
-            gh issue create --title "$ISSUE_TITLE" --body-file body.md
-          fi
-
-      - name: Close the drift issue
-        if: steps.check.outputs.stale == 'false' && steps.issue.outputs.number != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUMBER: ${{ steps.issue.outputs.number }}
-        run: gh issue close "$NUMBER" --comment "All translations are back in sync."

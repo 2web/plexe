@@ -10,6 +10,7 @@ reports every pair that has drifted.
 Usage:
     python3 scripts/check_translations.py            # report stale translations
     python3 scripts/check_translations.py --update   # record the current commits as synced
+    python3 scripts/check_translations.py --markdown # report as a Markdown summary
 
 Exit codes:
     0: all translations are up to date
@@ -25,6 +26,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 MANIFEST_PATH = REPO_ROOT / "docs" / "translations.json"
+DIFF_LIMIT = 4000
 
 
 def last_commit(source: str) -> str:
@@ -64,6 +66,36 @@ def find_stale(entries: list[dict[str, str]]) -> list[dict[str, str]]:
     return stale
 
 
+def source_diff(entry: dict[str, str]) -> str:
+    """Return the diff of an entry's English source between its synced and current commit."""
+    result = subprocess.run(
+        ["git", "diff", f"{entry['source_commit']}..{entry['current_commit']}", "--", entry["source"]],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    return result.stdout.strip()
+
+
+def markdown_report(stale: list[dict[str, str]]) -> str:
+    """Render the stale translations as Markdown, for a GitHub Actions job summary."""
+    lines = ["## Translations out of sync", "", "These translations no longer match their English sources.", ""]
+    for entry in stale:
+        lines += [f"### `{entry['source']}` -> `{entry['translation']}`", ""]
+        diff = source_diff(entry)
+        if diff:
+            lines += ["```diff", diff[:DIFF_LIMIT], "```"]
+            if len(diff) > DIFF_LIMIT:
+                lines.append(f"_Diff truncated; run `git diff {entry['source_commit']}..{entry['current_commit']}`._")
+        lines.append("")
+    lines += [
+        "Update each translation, then run `python3 scripts/check_translations.py --update`",
+        "and commit the translation together with `docs/translations.json`.",
+    ]
+    return "\n".join(lines)
+
+
 def report(stale: list[dict[str, str]]) -> None:
     """Print a human-readable summary of the stale translations."""
     if not stale:
@@ -81,6 +113,7 @@ def main() -> int:
     """Compare each translation against its source and optionally record a fresh sync."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--update", action="store_true", help="record current source commits as synced")
+    parser.add_argument("--markdown", action="store_true", help="report as Markdown for a job summary")
     args = parser.parse_args()
 
     entries = load_manifest()
@@ -92,7 +125,10 @@ def main() -> int:
         return 0
 
     stale = find_stale(entries)
-    report(stale)
+    if args.markdown:
+        print(markdown_report(stale) if stale else "## Translations are up to date")
+    else:
+        report(stale)
     return 1 if stale else 0
 
 
