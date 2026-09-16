@@ -3,37 +3,37 @@
     {
       "source": "README.md",
       "translation": "README.ru.md",
-      "source_commit": ""
+      "source_commit": "17c2b97ff7dea20705293b2fae4be014f7c31086"
     },
     {
       "source": "AGENTS.md",
       "translation": "AGENTS.ru.md",
-      "source_commit": ""
+      "source_commit": "17c2b97ff7dea20705293b2fae4be014f7c31086"
     },
     {
       "source": "CONTRIBUTING.md",
       "translation": "CONTRIBUTING.ru.md",
-      "source_commit": ""
+      "source_commit": "17c2b97ff7dea20705293b2fae4be014f7c31086"
     },
     {
       "source": "CODE_OF_CONDUCT.md",
       "translation": "CODE_OF_CONDUCT.ru.md",
-      "source_commit": ""
+      "source_commit": "17c2b97ff7dea20705293b2fae4be014f7c31086"
     },
     {
       "source": "SECURITY.md",
       "translation": "SECURITY.ru.md",
-      "source_commit": ""
+      "source_commit": "17c2b97ff7dea20705293b2fae4be014f7c31086"
     },
     {
       "source": ".github/ISSUE_TEMPLATE/bug_report.md",
       "translation": ".github/ISSUE_TEMPLATE/bug_report.ru.md",
-      "source_commit": ""
+      "source_commit": "9b3544bd59f73af2507aa946573f42f5ea2d71b7"
     },
     {
       "source": ".github/ISSUE_TEMPLATE/feature_request.md",
       "translation": ".github/ISSUE_TEMPLATE/feature_request.ru.md",
-      "source_commit": ""
+      "source_commit": "9b3544bd59f73af2507aa946573f42f5ea2d71b7"
     }
   ]
 }
