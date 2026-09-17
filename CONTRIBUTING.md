@@ -19,7 +19,7 @@ Thank you for considering contributing to plexe! Your contributions help improve
 
 ## Code of Conduct
 
-By participating in this project, you agree to uphold our [Code of Conduct](link-to-code-of-conduct), which outlines expectations for respectful and inclusive interactions.
+By participating in this project, you agree to uphold our [Code of Conduct](CODE_OF_CONDUCT.md), which outlines expectations for respectful and inclusive interactions.
 
 ## How Can I Contribute?
 
@@ -114,8 +114,10 @@ Ensure all tests pass before making contributions.
 ## Translations
 
 Documentation is maintained in English and mirrored into Russian as `*.ru.md` files next to each
-original (`README.ru.md`, `CONTRIBUTING.ru.md`, and so on). English is canonical: when the two
-disagree, the English file wins.
+original (`CONTRIBUTING.ru.md`, `SECURITY.ru.md`, and so on). The README is the exception: the
+repository front page reads in Russian, so `README.md` holds the translation and the English
+original lives in `README.en.md`. English is canonical throughout: when the two disagree, the
+English file wins.
 
 Every pair is registered in [`docs/translations.json`](docs/translations.json) together with a hash
 of the English source as it stood when the translation was written:

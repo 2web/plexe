@@ -8,39 +8,39 @@
 <img src="resources/backed-by-yc.png" alt="backed-by-yc" width="20%">
 
 
-Build machine learning models using natural language.
+Создавайте модели машинного обучения на естественном языке.
 
-[Quickstart](#1-quickstart) |
-[Features](#2-features) |
-[Installation](#3-installation) |
-[Documentation](#4-documentation)
+[Быстрый старт](#1-быстрый-старт) |
+[Возможности](#2-возможности) |
+[Установка](#3-установка) |
+[Документация](#4-документация)
 
-*English · [Русский](README.ru.md)*
-
-<br>
-
-**plexe** lets you create machine learning models by describing them in plain language. Simply explain what you want,
-provide a dataset, and the AI-powered system builds a fully functional model through an automated agentic approach.
-Also available as a [managed cloud service](https://plexe.ai).
+*[English](README.en.md) · Русский*
 
 <br>
 
-Watch the demo on YouTube:
+**plexe** позволяет создавать модели машинного обучения, описывая их обычным языком. Просто объясните, что вам нужно,
+предоставьте набор данных — и система на базе ИИ построит полностью работоспособную модель в автоматическом
+агентном режиме. Также доступен [управляемый облачный сервис](https://plexe.ai).
+
+<br>
+
+Посмотрите демо на YouTube:
 [![Building an ML model with Plexe](resources/demo-thumbnail.png)](https://www.youtube.com/watch?v=bUwCSglhcXY)
 </div>
 
-## 1. Quickstart
+## 1. Быстрый старт
 
-### Installation
+### Установка
 ```bash
 pip install plexe
 export OPENAI_API_KEY=<your-key>
 export ANTHROPIC_API_KEY=<your-key>
 ```
 
-### Using plexe
+### Использование plexe
 
-Provide a tabular dataset (Parquet, CSV, ORC, or Avro) and a natural language intent:
+Укажите табличный набор данных (Parquet, CSV, ORC или Avro) и задачу на естественном языке:
 
 ```bash
 python -m plexe.main \
@@ -62,56 +62,56 @@ best_solution, metrics, report = main(
 print(f"Performance: {best_solution.performance:.4f}")
 ```
 
-## 2. Features
+## 2. Возможности
 
-### 2.1. 🤖 Multi-Agent Architecture
-The system uses 14 specialized AI agents across a 6-phase workflow to:
-- Analyze your data and identify the ML task
-- Select the right evaluation metric
-- Search for the best model through hypothesis-driven iteration
-- Evaluate model performance and robustness
-- Package the model for deployment
+### 2.1. 🤖 Мультиагентная архитектура
+Система использует 14 специализированных ИИ-агентов, распределённых по 6-фазному рабочему процессу, чтобы:
+- проанализировать ваши данные и определить задачу машинного обучения;
+- выбрать подходящую метрику оценки;
+- найти лучшую модель через итеративный поиск, управляемый гипотезами;
+- оценить качество и устойчивость модели;
+- упаковать модель для развёртывания.
 
-### 2.2. 🎯 Automated Model Building
-Build complete models with a single call. Plexe supports **XGBoost**, **CatBoost**, **LightGBM**, **Keras**, and **PyTorch** for tabular data:
+### 2.2. 🎯 Автоматическое построение моделей
+Постройте готовую модель одним вызовом. Для табличных данных plexe поддерживает **XGBoost**, **CatBoost**, **LightGBM**, **Keras** и **PyTorch**:
 
 ```python
 best_solution, metrics, report = main(
     intent="predict house prices based on property features",
     data_refs=["housing.parquet"],
-    max_iterations=10,                    # Search iterations
-    allowed_model_types=["xgboost"],      # Or let plexe choose
-    enable_final_evaluation=True,         # Evaluate on held-out test set
+    max_iterations=10,                    # Итерации поиска
+    allowed_model_types=["xgboost"],      # Или пусть plexe выберет сам
+    enable_final_evaluation=True,         # Оценка на отложенной тестовой выборке
 )
 ```
 
-Run `python -m plexe.main --help` for all CLI options.
+Полный список опций CLI: `python -m plexe.main --help`.
 
-The output is a self-contained model package at `work_dir/model/` (also archived as `model.tar.gz`).
-The package has no dependency on `plexe` — build the model with plexe, deploy it anywhere:
+Результат — самодостаточный пакет модели в `work_dir/model/` (также архивируется в `model.tar.gz`).
+Пакет не зависит от `plexe`: постройте модель с помощью plexe и разверните её где угодно:
 
 ```
 model/
-├── artifacts/          # Trained model + feature pipeline (pickle)
-├── src/                # Inference predictor, pipeline code, training template
-├── schemas/            # Input/output JSON schemas
-├── config/             # Hyperparameters
-├── evaluation/         # Metrics and detailed analysis reports
-├── model.yaml          # Model metadata
-└── README.md           # Usage instructions with example code
+├── artifacts/          # Обученная модель + пайплайн признаков (pickle)
+├── src/                # Предиктор для инференса, код пайплайна, шаблон обучения
+├── schemas/            # JSON-схемы входа/выхода
+├── config/             # Гиперпараметры
+├── evaluation/         # Метрики и подробные аналитические отчёты
+├── model.yaml          # Метаданные модели
+└── README.md           # Инструкция по использованию с примером кода
 ```
 
-### 2.3. 🐳 Batteries-Included Docker Images
-Run plexe with everything pre-configured — PySpark, Java, and all dependencies included.
-A `Makefile` is provided for common workflows:
+### 2.3. 🐳 Docker-образы «всё включено»
+Запускайте plexe с уже настроенным окружением — PySpark, Java и все зависимости в комплекте.
+Для типовых сценариев есть `Makefile`:
 
 ```bash
-make build          # Build the Docker image
-make test-quick     # Fast sanity check (~1 iteration)
-make run-titanic    # Run on Spaceship Titanic dataset
+make build          # Собрать Docker-образ
+make test-quick     # Быстрая проверка работоспособности (~1 итерация)
+make run-titanic    # Запуск на наборе данных Spaceship Titanic
 ```
 
-Or run directly:
+Либо запускайте напрямую:
 
 ```bash
 docker run --rm \
@@ -125,11 +125,11 @@ docker run --rm \
         --spark-mode local
 ```
 
-A `config.yaml` in the project root is automatically mounted. A Databricks Connect image
-is also available: `docker build --target databricks .`
+Файл `config.yaml` из корня проекта монтируется автоматически. Также доступен образ
+с Databricks Connect: `docker build --target databricks .`
 
-### 2.4. ⚙️ YAML Configuration
-Customize LLM routing, search parameters, Spark settings, and more via a config file:
+### 2.4. ⚙️ Конфигурация через YAML
+Настраивайте маршрутизацию LLM, параметры поиска, настройки Spark и многое другое через файл конфигурации:
 
 ```yaml
 # config.yaml
@@ -144,76 +144,76 @@ feature_processor_llm: "anthropic/claude-sonnet-4-5-20250929"
 CONFIG_FILE=config.yaml python -m plexe.main ...
 ```
 
-See [`config.yaml.template`](config.yaml.template) for all available options.
+Все доступные параметры см. в [`config.yaml.template`](config.yaml.template).
 
-### 2.5. 🌐 Multi-Provider LLM Support
-Plexe uses LLMs via [LiteLLM](https://docs.litellm.ai/docs/providers), so you can use any supported provider:
+### 2.5. 🌐 Поддержка разных провайдеров LLM
+Plexe работает с LLM через [LiteLLM](https://docs.litellm.ai/docs/providers), поэтому вы можете использовать любого поддерживаемого провайдера:
 
 ```yaml
-# Route different agents to different providers
+# Направляйте разных агентов к разным провайдерам
 hypothesiser_llm: "openai/gpt-5-mini"
 feature_processor_llm: "anthropic/claude-sonnet-4-5-20250929"
 model_definer_llm: "ollama/llama3"
 ```
 
 > [!NOTE]
-> Plexe *should* work with most LiteLLM providers, but we actively test only with `openai/*` and `anthropic/*`
-> models. If you encounter issues with other providers, please let us know.
+> Plexe *должен* работать с большинством провайдеров LiteLLM, но мы активно тестируем только модели
+> `openai/*` и `anthropic/*`. Если с другими провайдерами возникнут проблемы, сообщите нам.
 
-### 2.6. 📊 Experiment Dashboard
-Visualize experiment results, search trees, and evaluation reports with the built-in Streamlit dashboard:
+### 2.6. 📊 Дашборд экспериментов
+Визуализируйте результаты экспериментов, деревья поиска и отчёты об оценке во встроенном дашборде на Streamlit:
 
 ```bash
 python -m plexe.viz --work-dir ./workdir
 ```
 
-### 2.7. 🔌 Extensibility
-Connect plexe to custom storage, tracking, and deployment infrastructure via the `WorkflowIntegration` interface:
+### 2.7. 🔌 Расширяемость
+Подключайте plexe к собственным системам хранения, отслеживания и развёртывания через интерфейс `WorkflowIntegration`:
 
 ```python
 main(intent="...", data_refs=[...], integration=MyCustomIntegration())
 ```
 
-See [`plexe/integrations/base.py`](plexe/integrations/base.py) for the full interface.
+Полное описание интерфейса — в [`plexe/integrations/base.py`](plexe/integrations/base.py).
 
-## 3. Installation
+## 3. Установка
 
-### 3.1. Installation Options
+### 3.1. Варианты установки
 ```bash
-pip install plexe                    # Core (XGBoost, Keras, scikit-learn)
+pip install plexe                    # Базовая версия (XGBoost, Keras, scikit-learn)
 ```
 
-You can add optional dependencies either by framework or by task grouping:
-- Framework extras: `catboost`, `lightgbm`, `pytorch`
-- Task extras: `tabular` (CatBoost + LightGBM), `vision` (PyTorch)
-- Platform extras: `pyspark`, `aws`
+Дополнительные зависимости можно добавлять либо по фреймворкам, либо по типам задач:
+- Экстра-пакеты фреймворков: `catboost`, `lightgbm`, `pytorch`
+- Экстра-пакеты задач: `tabular` (CatBoost + LightGBM), `vision` (PyTorch)
+- Экстра-пакеты платформ: `pyspark`, `aws`
 
-Examples:
+Примеры:
 ```bash
-pip install "plexe[tabular,pyspark]"   # tabular stack + local PySpark
-pip install "plexe[pytorch,aws]"       # explicit framework + S3 support
+pip install "plexe[tabular,pyspark]"   # стек для табличных данных + локальный PySpark
+pip install "plexe[pytorch,aws]"       # конкретный фреймворк + поддержка S3
 ```
 
-Requires Python >= 3.10, < 3.13.
+Требуется Python >= 3.10, < 3.13.
 
-### 3.2. API Keys
+### 3.2. API-ключи
 ```bash
 export OPENAI_API_KEY=<your-key>
 export ANTHROPIC_API_KEY=<your-key>
 ```
-See [LiteLLM providers](https://docs.litellm.ai/docs/providers) for all supported providers.
+Полный список поддерживаемых провайдеров см. в [документации LiteLLM](https://docs.litellm.ai/docs/providers).
 
-## 4. Documentation
-For full documentation, visit [docs.plexe.ai](https://docs.plexe.ai).
+## 4. Документация
+Полная документация доступна на [docs.plexe.ai](https://docs.plexe.ai).
 
-## 5. Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Join our [Discord](https://discord.gg/SefZDepGMv) to connect with the team.
+## 5. Участие в разработке
+Рекомендации приведены в [CONTRIBUTING.ru.md](CONTRIBUTING.ru.md). Присоединяйтесь к нашему [Discord](https://discord.gg/SefZDepGMv), чтобы связаться с командой.
 
-## 6. License
-[Apache-2.0 License](LICENSE)
+## 6. Лицензия
+[Лицензия Apache-2.0](LICENSE)
 
-## 7. Citation
-If you use Plexe in your research, please cite it as follows:
+## 7. Цитирование
+Если вы используете Plexe в своих исследованиях, ссылайтесь на него так:
 
 ```bibtex
 @software{plexe2025,

@@ -7,7 +7,7 @@ authors = [
     "Vaibhav Dubey <vdubey@plexe.ai>"
 ]
 license = "Apache-2.0"
-readme = "README.md"
+readme = "README.en.md"
 repository = "https://github.com/plexe-ai/plexe"
 homepage = "https://github.com/plexe-ai/plexe"
 packages = [{ include = "plexe" }]

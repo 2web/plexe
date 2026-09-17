@@ -1,10 +1,10 @@
 {
   "translations": [
     {
-      "source": "README.md",
-      "translation": "README.ru.md",
-      "source_commit": "17c2b97ff7dea20705293b2fae4be014f7c31086",
-      "source_sha256": "8ac88bc1860bdba6982c5056bf7227071922d2ac1ec7e843e9423076704d3ae8"
+      "source": "README.en.md",
+      "translation": "README.md",
+      "source_commit": "",
+      "source_sha256": "f03f12b2c2b60658ec08eff6f8d4a72b7436a0c38e0a52484f505ee5c933846b"
     },
     {
       "source": "AGENTS.md",
@@ -16,7 +16,7 @@
       "source": "CONTRIBUTING.md",
       "translation": "CONTRIBUTING.ru.md",
       "source_commit": "93a316f0ae1d0499b0a6ec488e7948151ca19382",
-      "source_sha256": "88d914a6808952cf66e526b23b19f42374bff38d4267dde386ead364950ff6db"
+      "source_sha256": "842d94611a56972cffaaa79ae62ce70728ab6f3a0059d3d4b26f78e0ade511f0"
     },
     {
       "source": "CODE_OF_CONDUCT.md",
