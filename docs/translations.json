@@ -3,7 +3,7 @@
     {
       "source": "README.en.md",
       "translation": "README.md",
-      "source_commit": "",
+      "source_commit": "e5fef33029e29ab0627a1a33bc5d0ff03ccd7134",
       "source_sha256": "f03f12b2c2b60658ec08eff6f8d4a72b7436a0c38e0a52484f505ee5c933846b"
     },
     {
@@ -15,8 +15,8 @@
     {
       "source": "CONTRIBUTING.md",
       "translation": "CONTRIBUTING.ru.md",
-      "source_commit": "93a316f0ae1d0499b0a6ec488e7948151ca19382",
-      "source_sha256": "842d94611a56972cffaaa79ae62ce70728ab6f3a0059d3d4b26f78e0ade511f0"
+      "source_commit": "e5fef33029e29ab0627a1a33bc5d0ff03ccd7134",
+      "source_sha256": "8673e8d27f110994aeec7d39af14359895d804061907730b1b8ea8d883033c41"
     },
     {
       "source": "CODE_OF_CONDUCT.md",
